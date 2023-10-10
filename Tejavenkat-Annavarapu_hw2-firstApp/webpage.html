@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Teja Venkat  - Portfolio</title>
+    
+</head>
+    <body class="light-mode">
+        <div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+         </div>
+    
+    <button id="dark-mode-toggle" class="my-button">Toggle Colour</button>
+
+    <script>
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+
+        // Add event listener to the button
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    </script>
+    <header>
+        <nav>
+            <div class="water-ripple">
+                <h2>Teja Venkat Annavarapu</h2>
+                </div>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#education">Education</a></li>
+                </ul>
+            </div>
+        </nav>
+        <script>
+            // Function to toggle the visibility of the "About Me" section
+            function toggleAboutSection() {
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                    aboutSection.style.display = aboutSection.style.display === 'none' ? 'block' : 'none';
+                }
+            }
+        </script>
+    </header>
+
+    <section id="about" class="section" >
+        <div >
+            <h2>About Me</h2>
+            </div>
+            <img src="assets\img\self2.jpg" width=200pxt height=200pxt alt="Your Image Description">
+            <p class="left-align">Experienced FULL STACK Developer with 2+ years of proven success in customizing and implementing CRM solutions. Developed C# plug-ins for several Microsoft Dynamics CRM solutions and also customized Microsoft Dynamics CRM organizations at the form, entity, relationship, reports, work-flow, dialogs, and business unit/user role permission level. Developed the Field service mobile and web application on woodford solutions and I consider myself to be an extremely driven person that is passionate about problem-solving and software engineering. I have a unique set of managerial and technological talents that will help me succeed in the quick-paced and always evolving world of technology.</p>
+        </div>
+    </section>
+    
+
+    <section id="skills" class="section" >
+        <div>
+            <h2>Skills</h2>
+    
+            <ul class="bullet-points">
+                <li>HTML/CSS and JavaScript</li>
+                <li>Data structures</li>
+                <li>Python, Java</li>
+                <li>AWS, GIT</li>
+                <li>Dynamics CRM 365</li>
+            </ul>
+        </div>
+    </section>
+     
+
+    <section id="projects" class="section">
+        <div >
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Helmet detection using ML Algorithms</h3>
+                <p>In many nations, motorcycles are a common form of transportation. However, riding a motorcycle comes with a great risk when the correct safety equipment is not used. Therefore, wearing a helmet is highly recommended to promote safety while riding a bike. It is vital to build an autonomous helmet detection system that can identify the offenders on motorcycles in order to eliminate this manual dependency. Many riders choose not to wear helmets while riding two-wheelers or only do so when there are traffic police present. The goal of this study is to create a real-time autonomous system utilizing the YOLO deep learning method. A form of CNN called YOLO is suitable for real-time object detection.</p>
+            </div>
+            <div class="project">
+                <h3>SIGN Language detection</h3>
+                <p class="left-allign">Front-End: HTML CSS  Back-End: python Algorithms:CNN,KNN,SVM
+                    I worked on a project to detect sign language and evaluated the accuracy of SVM, CNN, and KNN algorithms. I used a variety of data-sets, Jupyter Notebook, Python, Scikit-Learn, TensorFlow, and OpenCV, and performed analysis. In line with my interest for technology and inclusivity, our project aims to improve communication accessibility for the Deaf and Hard of Hearing community.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Education Section -->
+<section id="education" class="section">
+    <div>
+        <h2>Education</h2>
+        <table class="education-table" border="1" align-right="center">
+            <tr>
+                <th>University</th>
+                <th>Degree</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>University of Massachussetts</td>
+                <td>MS in CS</td>
+                <td>2024</td>
+            </tr>
+            <tr>
+                <td>GITAM Deemed To Be University</td>
+                <td>B.Tech</td>
+                <td>2020</td>
+            </tr>
+            <tr>
+                <td>Matrix Academy</td>
+                <td>Secondary education</td>
+                <td>2016</td>
+            </tr>
+            <tr>
+                <td>Oxford public school</td>
+                <td>Primary school</td>
+                <td>2014</td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="contact" class="section" >
+    <div >
+        <h2>Contact Me</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+        
+            <button type="submit">Send</button>
+        </form>
+        
+    </div>
+</section>
+
+    
+
+
+    <footer >
+        <div class="container" >
+            <p>&copy; 2023 Teja Venkat</p>
+            <div class="social-icons">
+                <a href="#"><img src="assets/img/fpng.png" alt="Facebook" class="fpng"></a>
+                <a href="#"><img src="assets/img/insta.png" alt="instagram" class="fpng"></a>
+                <a href="#"><img src="assets/img/linked.png" alt="LinkedIn" class="fpng"></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
