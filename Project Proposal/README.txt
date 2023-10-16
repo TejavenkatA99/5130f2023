@@ -1,5 +1,5 @@
                                                     INTERNET AND WEB SYSTEMS – I
-                                                         PROJECT PROPOSAL
+                                                         PROJECT PROPOSAL.
 
 PROJECT TITLE : GPTFLIX: The AI FILM FACTORY
 
