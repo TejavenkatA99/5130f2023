@@ -1,5 +1,0 @@
-Name:Teja venkat Annavarapu
-Student Id:02075546
-Student mail Id: Tejavenkat_Annavarapu@student.uml.edu
-cs.uml.edu: tannavar@cs.uml.edu
-GITHUB username: TejavenkatA99
