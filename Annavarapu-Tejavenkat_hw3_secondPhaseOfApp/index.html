@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adding Input Tag Dynamically</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="dynamic"></div>
+    <br />
+    <button onclick="addNextQuestion()">Submit the above question</button>
+    <a href="https://gps-coordinates.org/">
+      If you want to know your above current location in lon,lat were
+      approximate.Check here </a
+    >;
+    <script>
+      $(document).ready(function () {
+        addLocation();
+      });
+      var qc = 0;
+      var prevQuestion = "";
+      var question = "";
+      function addQuestion(question) {
+        if (qc != 0) {
+          const val = $(`#dynamicInput-${qc}`);
+          console.log(val.val());
+          console.log(prevQuestion);
+          addDataToTheLocalStorage(prevQuestion, val.val());
+        }
+        qc++;
+
+        var ques = $("<p>").text(question);
+        var input = $("<input>")
+          .attr("type", "text")
+          .attr("id", `dynamicInput-${qc}`);
+        $("#dynamic").append("<br>").append(ques).append("<br>").append(input);
+        prevQuestion = question;
+      }
+      function addDataToTheLocalStorage(key, data) {
+        localStorage.setItem(qc, JSON.stringify({ question: key, ans: data }));
+      }
+      function getLocationName(latitude, longitude) {
+        //const locationDiv = document.getElementById("location");
+
+        const geocoder = new google.maps.Geocoder();
+        const latlng = new google.maps.LatLng(latitude, longitude);
+
+        geocoder.geocode({ latLng: latlng }, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+              console.log(`Location: ${results[1].formatted_address}`);
+            } else {
+              //locationDiv.innerHTML = "Location not found";
+            }
+          } else {
+            //locationDiv.innerHTML = "Geocoder failed due to: " + status;
+          }
+        });
+      }
+      function addLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            console.log(lat, lng);
+            getLocationName(lat, lng);
+            addQuestion(
+              `We have found your lat: ${lat} and lng:${lng}, If it is correct leave the text box below empty`
+            );
+          });
+        } else {
+          // Browser doesn't support Geolocation.
+          alert("Your browser does not support Geolocation.");
+        }
+      }
+
+      function addNextQuestion() {
+        switch (qc) {
+          case 0:
+            question =
+              "I guess you are from India? and If not where are you from?";
+            addQuestion(question);
+
+            break;
+          case 1:
+            question =
+              "My current location is Lowell and I guess you current locaion is displayed above and If not what is your current location?";
+            addQuestion(question);
+            break;
+          case 2:
+            question =
+              "You live in a beautiful place...! and I like to be in colorodo during fall season? and where do you like be --";
+            addQuestion(question);
+            break;
+          case 3:
+            question =
+              "Oh wow! what a coincidence even my family lives there ? and do your familiy lives there too If not where do they live";
+            addQuestion(question);
+            break;
+          case 4:
+            question = "Do you watch movies?Offcourse I guess you do";
+            addQuestion(question);
+            break;
+          case 6:
+            question =
+              "oh Thats nice! I have developed an app which benefits the movie lover!NETFLIXGPT";
+            addQuestion(question);
+            break;
+          case 7:
+            question =
+              "Can you guess. Where my “significant other” was born/grew up";
+            addQuestion(question);
+            break;
+          case 8:
+            question =
+              "Nahhh I am unique.Do you know where is “significant other” was born";
+            addQuestion(question);
+            break;
+          case 9:
+            question =
+              "oh Thats great to know!I like to live in swzerland all my life but I was not born there :( .What is your birth place??) ";
+            addQuestion(question);
+            break;
+          case 10:
+            question =
+              "wow I like to visit that place ..What are the scenic attractions in your place ";
+            addQuestion(question);
+            break;
+          case 11:
+            question =
+              "Thats great.I will add them in my bucket list .Can you tell Few Facts about you like age,height,gender(optional,interestes etc...)";
+            addQuestion(question);
+            break;
+          case 12:
+            question =
+              "opps I can imagine how you look now.Senad me apicture of yours";
+            addQuestion(question);
+            break;
+          case 13:
+            question =
+              "Wow you look good! and Good to know about you.NICE meeting you";
+            addQuestion(question);
+            break;
+          case 14:
+            question = "Please upload a file.";
+            addQuestion(question);
+            sendPictureRequest();
+            break;
+          default:
+            break;
+        }
+      }
+    </script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ-st1x0hyztIj2pNOe3GNcU7FtYD7MBI&callback=initMap&libraries=places"
+      async
+      defer
+    ></script>
+  </body>
+</html>
 
