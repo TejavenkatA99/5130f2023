@@ -1,1 +1,269 @@
+/* Reset default margin and padding */
+.bullet-points li::before {
+    content: "\2022"; 
+    color: #000; 
+    font-weight: bold; 
+    margin-right: 5px;
+}
+/* Dark mode styles */
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px; 
+    align-items: center;
+    flex-direction: column;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; */
+}
+
+/* Header styles */
+header {
+    background-color: #2a095033;
+    color: #453880;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+/* Section styles */
+.section {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form styles */
+form label,
+form textarea,
+form input[type="text"],
+form input[type="email"] {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    padding: 10px;
+    border: 1px solid #8a7373;
+}
+
+form button {
+    background-color: #4b2807;
+    color: #070101;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Footer styles */
+footer {
+    background-color: #cfb7ac;
+    color: #43465e;
+    padding: -10px 0;
+    text-align: center;
+}
+
+.social-icons a {
+    margin-right: 10px;
+}
+.left-align{
+    text-align: left;
+}
+.education-table {
+    border-collapse: collapse;
+    width: 90%; /* Adjust the width as needed */
+    text-align: center;
+}
+
+.education-table th, .education-table td {
+    padding: 8px;
+    border: 1px solid black;
+}
+img.fpng {
+    width: 25px; /* Set the width to your desired size */
+    height: 28px; /* Set the height to your desired size */
+}
+img.ppng {
+    width: 70px; /* Set the width to your desired size */
+    height: 35px; /* Set the height to your desired size */
+}
+/* Light Mode styles */
+.light-mode {
+    background-color: #95a7ad;
+    color: #333333;
+}
+
+/* Dark Mode styles */
+.dark-mode {
+    background-color: #c03b3b;
+    color: #ffffff;
+}
+.water-ripple {
+    position: relative;
+    text-align: center;
+  }
+  
+  .water-ripple h1 {
+    font-size: 48px;
+    color: #421c61;
+    position: relative;
+    display: inline-block;
+    animation: ripple s infinite;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+  }
+  .water-ripple h2 {
+    font-size: 48px;
+    color: #040404;
+    position: relative;
+    display: inline-block;
+    animation: ripple 2s infinite;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+  }
+
+
+  .contact-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    margin: 10px;
+}
+
+.form-group.message {
+    flex-basis: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Optional styles for better aesthetics */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group.message textarea {
+    height: 150px;
+}
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+.my-button {
+    background-color: #3498db; /* Change to your desired background color */
+    color: #fff; /* Change to your desired text color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.my-button:hover {
+    background-color: #2980b9; /* Change to your desired hover color */
+}
 
