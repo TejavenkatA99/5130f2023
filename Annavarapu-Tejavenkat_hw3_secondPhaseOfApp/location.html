@@ -9,20 +9,114 @@
   <body>
     <div id="dynamic"></div>
     <br />
-    <button onclick="addNextQuestion()">Submit the above question</button>
+    <button onclick="addNextQuestion()" class="id-hide">
+      Submit the above question
+    </button>
+    <button onclick="downloadAll()" class="download">
+      You are done, download the data.
+    </button>
     <a href="https://gps-coordinates.org/">
       If you want to know your above current location in lon,lat were
       approximate.Check here </a
     >;
     <script>
+      var image;
+      var doc;
+      function downloadAll() {
+        downloadTheFiles(false);
+        downloadTheFiles(true);
+        downloadFile();
+      }
+      function downloadFile() {
+        var data = "";
+        for (var i = 1; i <= 13; i++) {
+          //console.log(JSON.parse(localStorage.getItem(i)).ans);
+          data += `\n question:${i} ${
+            JSON.parse(localStorage.getItem(i)).question
+          }`;
+          data += `\n Ans:${i} ${JSON.parse(localStorage.getItem(i)).ans}`;
+        }
+        const filename = "Data.txt";
+        const file = new Blob([data], { type: "text/plain" });
+
+        const fileURL = URL.createObjectURL(file);
+
+        const a = document.createElement("a");
+        a.href = fileURL;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Revoke the object URL to free up memory
+        URL.revokeObjectURL(fileURL);
+      }
+      function downloadTheFiles(isImage) {
+        var cur = isImage ? image : doc;
+        if (cur) {
+          var objectURL = window.URL.createObjectURL(cur);
+          var a = document.createElement("a");
+          a.href = objectURL;
+          a.download = isImage ? "ProfilePIC" : "RESUME";
+          a.click();
+        }
+      }
+      function addEvent1() {
+        document.getElementById("fileInput-12").addEventListener(
+          "change",
+          function () {
+            var file = document.getElementById("fileInput-12").files[0];
+            convertFileToBlob(file, true);
+          },
+          false
+        );
+      }
+      function addEvent2() {
+        document
+          .getElementById("fileInput-14")
+          .addEventListener("change", function (event) {
+            var file = document.getElementById("fileInput-14").files[0];
+            convertFileToBlob(file, false);
+          });
+      }
+      function convertFileToBlob(file, isImage) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          var data = reader.result;
+
+          var newBlob = new Blob([data], { type: file.type });
+          if (isImage) {
+            image = newBlob;
+            localStorage.setItem(
+              "image",
+              JSON.stringify({
+                url: window.URL.createObjectURL(newBlob),
+                type: file.type,
+              })
+            );
+          } else {
+            doc = newBlob;
+            localStorage.setItem(
+              "doc",
+              JSON.stringify({
+                url: window.URL.createObjectURL(newBlob),
+                type: file.type,
+              })
+            );
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
       $(document).ready(function () {
+        $(".download").hide();
         addLocation();
       });
       var qc = 0;
       var prevQuestion = "";
       var question = "";
       function addQuestion(question) {
-        if (qc != 0) {
+        if (qc != 0 && qc != 12 && qc != 14) {
           const val = $(`#dynamicInput-${qc}`);
           console.log(val.val());
           console.log(prevQuestion);
@@ -34,6 +128,23 @@
         var input = $("<input>")
           .attr("type", "text")
           .attr("id", `dynamicInput-${qc}`);
+        $("#dynamic").append("<br>").append(ques).append("<br>").append(input);
+        prevQuestion = question;
+      }
+      function addAFileQuestion(question) {
+        if (qc != 0 && qc != 12 && qc != 14) {
+          const val = $(`#dynamicInput-${qc}`);
+          console.log(val.val());
+          console.log(prevQuestion);
+          addDataToTheLocalStorage(prevQuestion, val.val());
+        }
+        console.log(qc);
+        qc++;
+
+        var ques = $("<p>").text(question);
+        var input = $("<input>")
+          .attr("type", "file")
+          .attr("id", `fileInput-${qc}`);
         $("#dynamic").append("<br>").append(ques).append("<br>").append(input);
         prevQuestion = question;
       }
@@ -103,52 +214,57 @@
             question = "Do you watch movies?Offcourse I guess you do";
             addQuestion(question);
             break;
-          case 6:
+          case 5:
             question =
               "oh Thats nice! I have developed an app which benefits the movie lover!NETFLIXGPT";
             addQuestion(question);
             break;
-          case 7:
+          case 6:
             question =
               "Can you guess. Where my “significant other” was born/grew up";
             addQuestion(question);
             break;
-          case 8:
+          case 7:
             question =
               "Nahhh I am unique.Do you know where is “significant other” was born";
             addQuestion(question);
             break;
-          case 9:
+          case 8:
             question =
               "oh Thats great to know!I like to live in swzerland all my life but I was not born there :( .What is your birth place??) ";
             addQuestion(question);
             break;
-          case 10:
+          case 9:
             question =
               "wow I like to visit that place ..What are the scenic attractions in your place ";
             addQuestion(question);
             break;
-          case 11:
+          case 10:
             question =
               "Thats great.I will add them in my bucket list .Can you tell Few Facts about you like age,height,gender(optional,interestes etc...)";
             addQuestion(question);
             break;
-          case 12:
+          case 11:
             question =
-              "opps I can imagine how you look now.Senad me apicture of yours";
-            addQuestion(question);
+              "opps I can imagine how you look now.Send me apicture of yours";
+            addAFileQuestion(question);
+            addEvent1();
             break;
-          case 13:
+          case 12:
             question =
               "Wow you look good! and Good to know about you.NICE meeting you";
             addQuestion(question);
             break;
-          case 14:
-            question = "Please upload a file.";
-            addQuestion(question);
-            sendPictureRequest();
+          case 13:
+            question =
+              "Please upload a RESUME.So That I can know more about you professionally";
+            addAFileQuestion(question);
+            addEvent2();
+
             break;
           default:
+            $(".id-hide").hide();
+            $(".download").show();
             break;
         }
       }
@@ -161,4 +277,3 @@
     ></script>
   </body>
 </html>
-
