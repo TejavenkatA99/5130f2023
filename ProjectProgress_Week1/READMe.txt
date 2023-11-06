@@ -1,7 +1,7 @@
 THE AI FILM FACTORY : 
 
 we are in our initial stage of develpoment and We've built the framework for our project by including Tailwind requirements for route configuration and styling.
-We built the UI layouts for the Sign Up and Sign In pages using unique styles from CSS. 
+We built the UI layouts for the Sign Up and Sign In pages using unique styles from CSS. We didnt built the funtionality yet but just created a page with a background image.
 
 The next step is to leverage Google Firebase for user authentication, allowing for secure login and registration.
 We also want to provide movie details via the TMDB API on our webpage. 
