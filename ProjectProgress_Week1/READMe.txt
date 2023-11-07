@@ -7,6 +7,11 @@ The next step is to leverage Google Firebase for user authentication, allowing f
 We also want to provide movie details via the TMDB API on our webpage. 
 Giving consumers access to a dynamic movie database will enhance the user experience as well as the functionality and engagement of our product.
 
+ # I am most proud of that I accomplished this week:My Acomplishment this week/
+
+I dedicated my efforts on creating easy to use sign-up and sign-in pages for a web application, as well as improving
+ the user experience through the usage of various CSS components. 
+My goal was to design a smooth and visually appealing interface that improves overall user engagement and interaction.
 
 
 References:
