@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Validating Email, Mobile number, and URL</h1>
+    <form id="validationForm">
+      <label for="email">Email Address:</label><br />
+      <input type="text" id="email" name="email" /><span
+        id="emailError"
+        style="color: red"
+      ></span
+      ><br /><br />
+
+      <label for="phoneNumber">US Mobile Number:</label><br />
+      <input type="text" id="phoneNumber" name="phoneNumber" /><span
+        id="phoneNumberError"
+        style="color: red"
+      ></span
+      ><br /><br />
+
+      <label for="url">URL:</label><br />
+      <input type="text" id="url" name="url" /><span
+        id="urlError"
+        style="color: red"
+      ></span
+      ><br /><br />
+
+      <input type="submit" value="Submit" />
+      <button type="button" id="cancelButton">Cancel</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("validationForm");
+
+      document
+        .getElementById("cancelButton")
+        .addEventListener("click", function () {
+          form.reset();
+          clearErrors();
+        });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        clearErrors();
+
+        const emailRegex =
+          /^([a-zA-Z0-9._%+-]+)@(gmail|yahoo|hotmail)\.(com)$/i;
+        const usMobileNumberRegex =
+          /^(?:\+?1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/;
+        const urlRegex =
+          /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+
+        const email = document.getElementById("email").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const url = document.getElementById("url").value;
+
+        const isValidEmail = emailRegex.test(email);
+        const isValidPhoneNumber = usMobileNumberRegex.test(phoneNumber);
+        const isValidUrl = urlRegex.test(url);
+
+        if (isValidEmail) {
+          alert(`${email} is a valid email address.`);
+        } else {
+          document.getElementById("emailError").textContent =
+            "Invalid email address format. Please use a valid format like example@gmail.com.";
+        }
+
+        if (isValidPhoneNumber) {
+          alert(`${phoneNumber} is a valid US mobile number.`);
+        } else {
+          document.getElementById("phoneNumberError").textContent =
+            "Invalid US mobile number format. Please use a valid format like 123-456-7890.";
+        }
+
+        if (isValidUrl) {
+          alert(`${url} is a valid URL.`);
+        } else {
+          document.getElementById("urlError").textContent =
+            "Invalid URL format. Please use a valid format like http://example.com.";
+        }
+
+        const formData = {
+          email: isValidEmail ? email : null,
+          phoneNumber: isValidPhoneNumber ? phoneNumber : null,
+          url: isValidUrl ? url : null,
+        };
+
+        localStorage.setItem("formData", JSON.stringify(formData));
+      });
+
+      function clearErrors() {
+        document.getElementById("emailError").textContent = "";
+        document.getElementById("phoneNumberError").textContent = "";
+        document.getElementById("urlError").textContent = "";
+      }
+    </script>
+  </body>
+</html>
