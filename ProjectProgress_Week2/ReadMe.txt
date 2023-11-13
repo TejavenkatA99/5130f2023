@@ -39,7 +39,7 @@ To overcome these obstacles, the team needed to pay close attention to detail an
 
 Tasks I have done:
 
-In this week Implemented the functionality for the signup page and also configured googlefirebase for the user authentication.
+In this week, I have Implemented the functionality for the signup page and also configured googlefirebase for the user authentication.
 
 References:
 
