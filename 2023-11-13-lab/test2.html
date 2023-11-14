@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Login</title>
+  </head>
+  <body>
+    <h2>User Login</h2>
+
+    <form id="loginForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required /><br />
+
+      <button type="button" onclick="loginUser()">Login</button>
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+      function loginUser() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        var requestBody = {
+          email: email,
+          password: password,
+        };
+
+        // Make AJAX POST request
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8080/auth/login", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              // Handle successful response
+              var response = JSON.parse(xhr.responseText);
+              displayUserDetails(response);
+            } else {
+              // Handle error
+              displayError("Invalid login details. Please try again.");
+            }
+          }
+        };
+
+        // Convert the request body to JSON and send the request
+        xhr.send(JSON.stringify(requestBody));
+      }
+
+      function displayUserDetails(user) {
+        var responseDiv = document.getElementById("response");
+        responseDiv.innerHTML =
+          "<h3>User Details:</h3>" +
+          "<p>ID: " +
+          user._id +
+          "</p>" +
+          "<p>Email: " +
+          user.email +
+          "</p>" +
+          "<p>Username: " +
+          user.username +
+          "</p>";
+      }
+
+      function displayError(message) {
+        var responseDiv = document.getElementById("response");
+        responseDiv.innerHTML = "<p style='color: red;'>" + message + "</p>";
+      }
+    </script>
+  </body>
+</html>

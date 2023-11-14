@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Sign Up / Sign In</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h1>Sign Up</h1>
+        <form>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            pattern="[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.(com|net|org)"
+            title="Enter a valid email address"
+            required
+          />
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+          <button type="submit" onclick="registerUser()">Sign Up</button>
+        </form>
+      </div>
+
+      <div class="form-container">
+        <h1>Sign In</h1>
+        <form action="/signin" method="post">
+          <label for="signin-email">Email:</label>
+          <input
+            type="email"
+            id="signin-email"
+            name="email"
+            pattern="[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.(com|net|org)"
+            title="Enter a valid email address"
+            required
+          />
+          <label for="signin-password">Password:</label>
+          <input
+            type="password"
+            id="signin-password"
+            name="password"
+            required
+          />
+          <button type="button" onclick="loginUser()">Sign In</button>
+        </form>
+        <div id="response"></div>
+      </div>
+
+      <p>Already have an account? <a href="#signin">Sign In</a></p>
+      <p>Don't have an account? <a href="#signup">Sign Up</a></p>
+    </div>
+    <script>
+      function registerUser() {
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        // Validate email using the pattern attribute
+        if (
+          !/^[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.(com|net|org)$/.test(
+            email
+          )
+        ) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        var requestBody = {
+          email: email,
+          password: password,
+          username: username,
+        };
+
+        // Make AJAX POST request
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8080/auth/register", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle successful response
+            console.log(xhr.responseText);
+          } else {
+            // Handle error
+            console.error("Error occurred during registration.");
+          }
+        };
+
+        // Convert the request body to JSON and send the request
+        xhr.send(JSON.stringify(requestBody));
+      }
+    </script>
+    <script>
+      // Rest of your JavaScript code
+      function loginUser() {
+        var email = document.getElementById("signin-email").value;
+        var password = document.getElementById("signin-password").value;
+
+        var requestBody = {
+          email: email,
+          password: password,
+        };
+
+        // Make AJAX POST request
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8080/auth/login", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              // Handle successful response
+              var response = JSON.parse(xhr.responseText);
+              displayUserDetails(response);
+            } else {
+              // Handle error
+              displayError("Invalid login details. Please try again.");
+            }
+          }
+        };
+
+        // Convert the request body to JSON and send the request
+        xhr.send(JSON.stringify(requestBody));
+      }
+
+      function displayUserDetails(user) {
+        window.location.href = "location.html";
+        var responseDiv = document.getElementById("response");
+        responseDiv.innerHTML =
+          "<h3>User Details:</h3>" +
+          "<p>ID: " +
+          user._id +
+          "</p>" +
+          "<p>Email: " +
+          user.email +
+          "</p>" +
+          "<p>Username: " +
+          user.username +
+          "</p>";
+      }
+
+      function displayError(message) {
+        var responseDiv = document.getElementById("response");
+        responseDiv.innerHTML = "<p style='color: red;'>" + message + "</p>";
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const signInLink = document.querySelector('a[href="#signin"]');
+        const signUpLink = document.querySelector('a[href="#signup"]');
+        const signUpForm = document.querySelector('form[action="/signup"]');
+        const signInForm = document.querySelector('form[action="/signin"]');
+
+        signInLink.addEventListener("click", () => {
+          signUpForm.style.display = "none";
+          signInForm.style.display = "block";
+        });
+
+        signUpLink.addEventListener("click", () => {
+          signInForm.style.display = "none";
+          signUpForm.style.display = "block";
+        });
+      });
+    </script>
+  </body>
+</html>
