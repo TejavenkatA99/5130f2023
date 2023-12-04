@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA</title>
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
     <!-- Add to home screen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="pwa test" />
-    <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="apple-touch-icon" href="./icon.png" />
     <meta name="msapplication-TileImage" content="icon.png" />
     <meta name="msapplication-TileColor" content="#3367D6" />
     <style>
@@ -121,6 +121,7 @@
           gap: 10px;
     </style>
   </head>
+
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
   <script type="text/javascript" src="./userinfo.js"></script>
@@ -306,7 +307,7 @@
         if ("serviceWorker" in navigator) {
           try {
             const registration = await navigator.serviceWorker.register(
-              "/sw.js"
+              "./sw.js"
             );
             console.log(
               "ServiceWorker registration successful with scope: ",
@@ -336,6 +337,23 @@
           }
         }
       });
+    </script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./sw.js")
+            .then((registration) => {
+              console.log(
+                "ServiceWorker registered with scope:",
+                registration.scope
+              );
+            })
+            .catch((err) => {
+              console.error("ServiceWorker registration failed:", err);
+            });
+        });
+      }
     </script>
   </body>
 </html>

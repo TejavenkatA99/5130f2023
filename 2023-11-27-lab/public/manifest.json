@@ -1,14 +1,18 @@
+
 {
-  "short_name": "test",
+  "manifest_version": 3,
   "name": "pwa test",
+  "version": "1.0",
+  "description": "This is a sample extension",
+  "short_name": "Test",
   "icons": [
     {
-      "src": "/icon.png",
+      "src": "./icon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icon.png",
+      "src": "./icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -16,5 +20,12 @@
   "start_url": "/",
   "background_color": "#3367D6",
   "display": "standalone",
-  "theme_color": "#3367D6"
+  "theme_color": "#3367D6",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "permissions": ["storage", "unlimitedStorage"],
+  "web_accessible_resources": [{
+    "resources": ["/*"],
+    "matches": ["http://*/*", "https://*/*"]
+  }]
 }

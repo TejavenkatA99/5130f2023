@@ -1,4 +1,4 @@
-# PWA-Sample/example
+# PWA-Sample
 
 # npm i express
 
