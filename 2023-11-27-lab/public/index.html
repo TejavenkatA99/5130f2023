@@ -10,8 +10,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="pwa test" />
-    <link rel="apple-touch-icon" href="./icon.png" />
-    <meta name="msapplication-TileImage" content="icon.png" />
+    <link rel="apple-touch-icon" href="./iconn.png" />
+    <meta name="msapplication-TileImage" content="iconn.png" />
     <meta name="msapplication-TileColor" content="#3367D6" />
     <style>
             body { font-family: serif; margin: 0; padding: 0;
@@ -321,12 +321,12 @@
               const title = "Test Notification";
               const options = {
                 body: "Do you like this ?",
-                icon: "icon.png",
+                icon: "iconn.png",
                 vibrate: [200, 100, 200, 100, 200, 100, 400],
                 tag: "request",
                 actions: [
-                  { action: "yes", title: "Yes", icon: "icon.png" },
-                  { action: "no", title: "No", icon: "icon.png" },
+                  { action: "yes", title: "Yes", icon: "iconn.png" },
+                  { action: "no", title: "No", icon: "iconn.png" },
                 ],
               };
               const res = await registration.showNotification(title, options);
