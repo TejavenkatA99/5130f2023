@@ -1,6 +1,6 @@
-Term Paper Proposal
+Term Paper Final Submission:
 
-Combination of Mobile Communication Technology and Computer Internet Technology
+Title:Combination of Mobile Communication Technology and Computer Internet Technology
 
 
 Abstract:
@@ -10,4 +10,14 @@ The combination of mobile communication technology and computer Internet technol
 
 
 Reference Links:
-1.https://iopscience.iop.org/article/10.1088/1742-6596/1966/1/012036/pdf
+
+[1.] https://iopscience.iop.org/article/10.1088/1742-6596/1966/1/012036/pdf
+
+[2] Li Jing, Liu Wulin, Fan Li. Utilization status of mobile communication tech in the era of Internet
+plus [J]. Electronic tech and software engineering, 2017 (22): 30.
+
+[3] Li Lingyun. Discussion on the combined development of mobile communication tech and
+Internet tech [J]. Science and tech wind, 2018 (17): 77.
+
+[4] Li Shufang. Analysis of the combined development of mobile communication tech and Internet
+tech [J]. China new tech and new products, 2013 (23): 14.
